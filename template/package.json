@@ -1,0 +1,48 @@
+{
+  "name": "node-boilerplate",
+  "version": "1.0.0",
+  "description": "standardized and pre-configured starting point for a new software project",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon server.js.js",
+    "dev": "nodemon server.js.js -e html,css,js,ejs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rutvikp501/Node-Boilerplate.git"
+  },
+  "author": "Rutvik Patil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rutvikp501/Node-Boilerplate/issues"
+  },
+  "homepage": "https://github.com/Rutvikp501/Node-Boilerplate#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1692.0",
+    "bcrypt": "^6.0.0",
+    "cloudinary": "^1.41.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.17.0",
+    "morgan": "^1.10.1",
+    "multer": "^2.0.2",
+    "multer-s3": "^3.0.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "mysql2": "^3.14.3",
+    "nodemailer": "^7.0.5",
+    "nodemon": "^3.1.10",
+    "path": "^0.12.7",
+    "pdfmake": "^0.2.20",
+    "pg": "^8.16.3",
+    "roboto-font": "^0.1.0",
+    "svg-captcha": "^1.4.0",
+    "swagger-ui-express": "^5.0.1",
+    "yamljs": "^0.3.0"
+  }
+}

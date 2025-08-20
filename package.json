@@ -1,0 +1,24 @@
+{
+  "name": "quickstartnode",
+  "version": "1.0.0",
+  "description": "Quickstart Node.js boilerplate generator",
+  "homepage": "https://github.com/Rutvikp501/quickstartnode#readme",
+  "bugs": {
+    "url": "https://github.com/Rutvikp501/quickstartnode/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rutvikp501/quickstartnode.git"
+  },
+  "keywords": ["node", "express", "boilerplate", "starter"],
+  "license": "MIT",
+  "author": "Rutvik Patil",
+  "type": "commonjs",
+  "main": "bin/cli.js",
+  "bin": {
+    "quickstartnode": "bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
