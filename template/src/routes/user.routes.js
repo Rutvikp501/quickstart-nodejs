@@ -1,6 +1,6 @@
 import express from 'express';
 import {registerUser,loginUser,getAllUsers,getUserById,updateUser,deleteUser,
-         forgotPassword,verifyOtp,resetPassword,} from '../controllers/userController.js';
+         forgotPassword,verifyOtp,resetPassword,} from '../controllers/user.Controller.js';
 
 import { authenticateJWT, checkRole } from '../middlewares/authenticateJWT.js';
 const router = express.Router();

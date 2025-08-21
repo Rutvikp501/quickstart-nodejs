@@ -27,6 +27,14 @@ npm start
 - ✅ Swagger API Docs setup
 - ✅ Pre-configured folder structure for scalability
 
+# 🆕 Built-in Utilities
+
+- 🔹 DateTime Formatter – format dates/times easily
+- 🔹 Number Formatter – format large numbers, decimals, percentages
+- 🔹 Currency Formatter – handle INR/USD/other currency formats
+- 🔹 OTP System – generate + verify one-time passwords
+- 🔹 Captcha Utility – basic captcha generator & validator
+
 ## 📁 Folder Structure Overview
 
 ```

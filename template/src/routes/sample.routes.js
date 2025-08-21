@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 import { generateCaptcha } from '../utils/generateCaptcha.js';
-import { pdfGenerate } from '../controllers/pdfController.js';
+import { pdfGenerate } from '../controllers/pdf.Controller.js';
 
 router.get('/captcha', (req, res) => {
   const captcha = generateCaptcha();

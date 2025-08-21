@@ -8,7 +8,8 @@ import errorHandler from './middlewares/error.middleware.js';
 import { connectMongoDB,PGConnection  } from './config/db.js';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
-    
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 
 const app = express();
@@ -22,7 +23,11 @@ app.use(session({
   saveUninitialized: true,
   cookie: { maxAge: 60000 }
 }));
-const swaggerDocument = YAML.load('../src/config/swagger.yaml');
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const swaggerDocument = YAML.load(path.join(__dirname, '../src/config/swagger.yaml'));
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api', mainRoutes);
 // ✅ Basic check route (after API)
