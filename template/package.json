@@ -1,25 +1,26 @@
 {
-  "name": "node-boilerplate",
+  "name": "quickstart-nodejs",
   "version": "1.0.0",
   "description": "standardized and pre-configured starting point for a new software project",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js.js",
-    "dev": "nodemon server.js.js -e html,css,js,ejs"
+    "start": "nodemon server.js.",
+    "dev": "nodemon server.js -e html,css,js,ejs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Rutvikp501/Node-Boilerplate.git"
+    "url": "git+https://github.com/Rutvikp501/quickstart-nodejs.git"
   },
   "author": "Rutvik Patil",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Rutvikp501/Node-Boilerplate/issues"
+    "url": "https://github.com/Rutvikp501/quickstart-nodejs/issues"
   },
-  "homepage": "https://github.com/Rutvikp501/Node-Boilerplate#readme",
+  "homepage": "https://github.com/Rutvikp501/quickstart-nodejs#readme",
   "dependencies": {
-    "aws-sdk": "^2.1692.0",
+    "@aws-sdk/client-s3": "^3.637.0",
+    "@aws-sdk/s3-request-presigner": "^3.637.0",
     "bcrypt": "^6.0.0",
     "cloudinary": "^1.41.3",
     "cors": "^2.8.5",

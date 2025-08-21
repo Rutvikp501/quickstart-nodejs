@@ -22,9 +22,13 @@ app.use(session({
   saveUninitialized: true,
   cookie: { maxAge: 60000 }
 }));
-const swaggerDocument = YAML.load('./config/swagger.yaml');
+const swaggerDocument = YAML.load('../src/config/swagger.yaml');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api', mainRoutes);
+// ✅ Basic check route (after API)
+app.get('/', (req, res) => {
+  res.send('Welcome to server ..!');
+});
 app.use(notFound);
 app.use(errorHandler);
 

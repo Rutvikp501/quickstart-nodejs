@@ -9,7 +9,7 @@ router.use('/user', userRoutes);
 
 // ✅ Basic check route (after API)
 router.get('/', (req, res) => {
-  res.send('API is working ✅');
+  res.send('Main Route is working ✅');
 });
 
 export default router;
