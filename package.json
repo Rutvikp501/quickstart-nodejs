@@ -1,14 +1,14 @@
 {
-  "name": "quickstartnode",
+  "name": "quickstart-nodejs",
   "version": "1.0.0",
   "description": "Quickstart Node.js boilerplate generator",
-  "homepage": "https://github.com/Rutvikp501/quickstartnode#readme",
+  "homepage": "https://github.com/Rutvikp501/quickstart-nodejs#readme",
   "bugs": {
-    "url": "https://github.com/Rutvikp501/quickstartnode/issues"
+    "url": "https://github.com/Rutvikp501/quickstart-nodejs/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Rutvikp501/quickstartnode.git"
+    "url": "git+https://github.com/Rutvikp501/quickstart-nodejs.git"
   },
   "keywords": ["node", "express", "boilerplate", "starter"],
   "license": "MIT",
@@ -16,7 +16,7 @@
   "type": "commonjs",
   "main": "bin/cli.js",
   "bin": {
-    "quickstartnode": "bin/cli.js"
+    "quickstart-nodejs": "bin/cli.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
