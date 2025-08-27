@@ -1,11 +1,11 @@
-# 🚀 QuickStartNode (Node.js Boilerplate)
+# 🚀 QuickStartNodejs (Node.js Boilerplate)
 
 A production-ready **Node.js + Express boilerplate** with MongoDB, PostgreSQL, JWT authentication, Cloudinary integration, AWS support, PDF generation, and more.
 
 Easily kickstart your next backend project with **just one command** 👇
 
 ```bash
-npx quickstartnode my-app
+npx quickstart-nodejs my-app
 cd my-app
 npm install
 npm start
@@ -60,7 +60,7 @@ my-app/
 ### 1️⃣ Install via NPX
 
 ```ts
-npx quickstartnode my-app
+npx quickstart-nodejs my-app
 ```
 
 ### 2️⃣ Install dependencies
