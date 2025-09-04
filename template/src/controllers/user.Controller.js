@@ -2,11 +2,12 @@ import User from "../models/User.model.js";
 import { generateOTP } from "../utils/otpGenerator.js";
 import { sendMailWithAttachment, SendOTP } from "../utils/sendEmail.js";
 import { hashPassword, comparePassword } from "../utils/encryptDecrypt.js";
-import { generateToken } from "../utils/jwtUtils.js";
+import { generateToken } from "../config/jwt.config.js";
 import { s3Upload, s3Delete, safeUnlink } from "../config/s3.js";
-
+import { generateUserExcel, parseUserExcel } from "../utils/excel.util.js";
 const FOLDER = "ProfilePhoto";
 
+// Register
 export const registerUser = async (req, res) => {
   try {
     const body = req.body || {};
@@ -38,7 +39,7 @@ export const registerUser = async (req, res) => {
     res.status(201).json({ message: "User registered", User: newUser });
   } catch (err) {
     safeUnlink(req.file?.path);
-    console.error("❌ Error registering User:", err);
+    console.error("  Error registering User:", err);
     res
       .status(500)
       .json({ message: "Error registering User", error: err.message });
@@ -169,11 +170,19 @@ export const getUserById = async (req, res) => {
 };
 
 // Update User
-
 export const updateUser = async (req, res) => {
   try {
     const body = req.body || {};
-    const { name,  phone, password, email, role, department,isActive,isAdmin } = body;
+    const {
+      name,
+      phone,
+      password,
+      email,
+      role,
+      department,
+      isActive,
+      isAdmin,
+    } = body;
 
     const existingUser = await User.findById(req.params.id);
     if (!existingUser) {
@@ -195,11 +204,11 @@ export const updateUser = async (req, res) => {
       update.email = email;
     }
 
-    if (body.hasOwnProperty('isActive')) {
-        update.isActive = isActive;
+    if (body.hasOwnProperty("isActive")) {
+      update.isActive = isActive;
     }
-    if (body.hasOwnProperty('isAdmin')) {
-        update.isAdmin = isAdmin;
+    if (body.hasOwnProperty("isAdmin")) {
+      update.isAdmin = isAdmin;
     }
 
     if (password) update.password = await hashPassword(password);
@@ -224,7 +233,7 @@ export const updateUser = async (req, res) => {
     res.json({ message: "User updated", User: newUser });
   } catch (err) {
     safeUnlink(req.file?.path);
-    console.error("❌ Error in updateUser:", err);
+    console.error("  Error in updateUser:", err);
     res
       .status(500)
       .json({ message: "Error updating User", error: err.message });
@@ -249,9 +258,75 @@ export const deleteUser = async (req, res) => {
 
     res.json({ message: "User deleted" });
   } catch (err) {
-    console.error("❌ Error deleting User:", err);
+    console.error("  Error deleting User:", err);
     res
       .status(500)
       .json({ message: "Error deleting User", error: err.message });
+  }
+};
+
+//  Export Users to Excel
+export const exportUsersToExcel = async (req, res) => {
+  try {
+    const users = await User.find();
+    const workbook = await generateUserExcel(users);
+
+    res.setHeader(
+      "Content-Type",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    );
+    res.setHeader("Content-Disposition", "attachment; filename=users.xlsx");
+
+    await workbook.xlsx.write(res);
+    res.end();
+  } catch (err) {
+    console.error("  Error exporting users:", err);
+    res
+      .status(500)
+      .json({ message: "Error exporting users", error: err.message });
+  }
+};
+//  Import Users from Excel
+export const importUsersFromExcel = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "Please upload an Excel file" });
+    }
+
+    const usersData = await parseUserExcel(req.file.path);
+
+    const insertedUsers = [];
+    const skippedUsers = [];
+
+    for (const userData of usersData) {
+      if (!userData.email) continue; // skip rows without email
+
+      // Check if user already exists
+      const existingUser = await User.findOne({ email: userData.email });
+
+      if (existingUser) {
+        skippedUsers.push(userData.email);
+        continue;
+      }
+
+      const newUser = await User.create(userData);
+      insertedUsers.push(newUser);
+    }
+
+    // Cleanup uploaded file
+    safeUnlink(req.file.path); // remove local temp
+
+    res.status(201).json({
+      message: "Users imported successfully",
+      insertedCount: insertedUsers.length,
+      skippedCount: skippedUsers.length,
+      skippedUsers,
+      insertedUsers,
+    });
+  } catch (err) {
+    console.error("❌ Error importing users:", err);
+    res
+      .status(500)
+      .json({ message: "Error importing users", error: err.message });
   }
 };

@@ -16,7 +16,7 @@ export const connectMongoDB = async () => {
     });
     log("MongoDB Connected ✅");
   } catch (error) {
-    console.error("MongoDB connection failed ❌", error);
+    console.error("MongoDB connection failed  ", error);
     process.exit(1);
   }
 };
@@ -35,7 +35,7 @@ export const connectMySQLDB = async () => {
     log("MySQL Connected ✅");
     return connection;
   } catch (error) {
-    console.error("MySQL connection failed ❌", error);
+    console.error("MySQL connection failed  ", error);
     process.exit(1);
   }
 };
@@ -61,7 +61,7 @@ export const PGConnection = async () => {
     console.log("PostgreSQL Connected ✅");
     client.release();
   } catch (err) {
-    console.error("PostgreSQL connection failed ❌", err);
+    console.error("PostgreSQL connection failed  ", err);
     process.exit(1);
   }
 };

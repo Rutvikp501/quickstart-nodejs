@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const PhotoSchema = new mongoose.Schema({
-  publicId: { type: String, required: true },
+  publicId: { type: String, required: false },
   url: { type: String, required: true },
 }, { _id: false });
 
@@ -9,13 +9,14 @@ const PhotoSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  password: { type: String,},
   phone: String,
   otp: String,
   otpExpires: Date,
-  role: { type: String,default: 'admin'},
+  googleId: { type: String, unique: true, sparse: true },
+  role: { type: String,default: 'user'},
   isActive: { type: Boolean, default: true },
-  isAdmin: { type: Boolean, default: true },
+  isAdmin: { type: Boolean, },
   createdAt: { type: Date, default: Date.now },
    profilePhoto: [PhotoSchema],
 });

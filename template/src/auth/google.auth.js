@@ -1,0 +1,78 @@
+import dotenv from "dotenv";
+dotenv.config();
+
+import passport from "passport";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import  User  from "../models/User.model.js";
+import { generateToken } from "../config/jwt.config.js"; // your existing JWT helper
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: process.env.GOOGLE_REDIRECT_URL,
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        const email = profile.emails?.[0]?.value;
+        const photo = profile.photos?.[0]?.value;
+console.log("✅ Google Profile:", profile);
+
+        let existingUser = await User.findOne({ email });
+
+        if (!existingUser) {
+          // New user
+          existingUser = await User.create({
+            name: profile.displayName,
+            email,
+            googleId: profile.id,
+            profilePhoto: photo ? [{ publicId: null, url: photo }] : [],
+            role: "user",
+            isAdmin: false,
+          });
+        } else if (!existingUser.googleId) {
+          // Existing user without googleId → link account
+          existingUser.googleId = profile.id;
+
+          console.log("✅ User saved/found:", existingUser);
+          await existingUser.save();
+        }
+
+        // ✅ Generate JWT token
+        const token = generateToken(existingUser);
+
+        // Attach token for callback route
+        return done(null, { existingUser, token });
+      } catch (err) {
+        console.error("  Error in Google OAuth:", err);
+        return done(err, null);
+      }
+    }
+  )
+);
+
+// Not needed if JWT → but keep minimal
+passport.serializeUser((data, done) => done(null, data));
+passport.deserializeUser((data, done) => done(null, data));
+
+
+
+//     clientID: process.env.GOOGLE_CLIENT_ID,
+//     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+//     callbackURL: process.env.GOOGLE_REDIRECT_URL
+//   },
+//   function(accessToken, refreshToken, profile, cb) {
+//     return cb(null, profile);
+//   }
+// ));
+
+// passport.serializeUser(function(user, done) {
+//   done(null, user)
+// });
+
+// passport.deserializeUser(function(id, done) {
+//   User.findById(id, function (err, user) {
+//     done(err, user);
+//   });
+// });

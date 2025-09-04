@@ -3,9 +3,11 @@ const router = express.Router();
 
 import sampleRoutes from './sample.routes.js';
 import userRoutes from './user.routes.js';
+import authRoutes from './auth.routes.js';
 
 router.use('/', sampleRoutes);
 router.use('/user', userRoutes);
+router.use('/auth', authRoutes);
 
 // ✅ Basic check route (after API)
 router.get('/', (req, res) => {

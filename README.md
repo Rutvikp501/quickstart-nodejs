@@ -19,6 +19,7 @@ npm start
 - ✅ MongoDB + Mongoose connection ready
 - ✅ PostgreSQL + pg connection ready
 - ✅ JWT Authentication (login/register flow)
+- ✅ Google OAuth 2.0 Authentication (login with Google)
 - ✅ AWS S3 integration ready
 - ✅ Cloudinary for image uploads
 - ✅ PDF Generation using pdfmake
@@ -34,15 +35,19 @@ npm start
 - 🔹 Currency Formatter – handle INR/USD/other currency formats
 - 🔹 OTP System – generate + verify one-time passwords
 - 🔹 Captcha Utility – basic captcha generator & validator
+- 🔹 Excel Export Utility – export all user data into an Excel file (.xlsx)
+- 🔹 Excel Import Utility – bulk import users from Excel (with duplicate email check + safe field validation)
+- 🔹 Google OAuth Utility – authenticate users with their Google account (auto-save in DB + JWT issued)
 
 ## 📁 Folder Structure Overview
 
 ```
 my-app/
-│── server.js          # Main entry point
+│── server.js          
 │── package.json
 │── .env.example
 │── src/
+│── ├── auth           # Auth  handling
 │   ├── config/        # DB connections, Cloud configs, Swagger
 │   ├── controllers/   # Route controllers
 │   ├── middlewares/   # Auth & error handling

@@ -1,23 +1,23 @@
 {
-  "name": "quickstart-nodejs",
+  "name": "node-boilerplate",
   "version": "1.0.0",
   "description": "standardized and pre-configured starting point for a new software project",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js.",
-    "dev": "nodemon server.js -e html,css,js,ejs"
+    "start": "nodemon server.js.js",
+    "dev": "nodemon server.js.js -e html,css,js,ejs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Rutvikp501/quickstart-nodejs.git"
+    "url": "git+https://github.com/Rutvikp501/Node-Boilerplate.git"
   },
   "author": "Rutvik Patil",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Rutvikp501/quickstart-nodejs/issues"
+    "url": "https://github.com/Rutvikp501/Node-Boilerplate/issues"
   },
-  "homepage": "https://github.com/Rutvikp501/quickstart-nodejs#readme",
+  "homepage": "https://github.com/Rutvikp501/Node-Boilerplate#readme",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.637.0",
     "@aws-sdk/s3-request-presigner": "^3.637.0",
@@ -26,6 +26,7 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "ejs": "^3.1.10",
+    "exceljs": "^4.4.0",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
     "fs": "^0.0.1-security",
@@ -38,6 +39,8 @@
     "mysql2": "^3.14.3",
     "nodemailer": "^7.0.5",
     "nodemon": "^3.1.10",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
     "path": "^0.12.7",
     "pdfmake": "^0.2.20",
     "pg": "^8.16.3",

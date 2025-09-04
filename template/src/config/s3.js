@@ -16,7 +16,7 @@ export const s3 = new S3Client({
 
 // Local temp upload (multer) – this parses multipart & populates req.body + req.file
 export const uploadLocal = multer({
-  dest: "uploads/", // temp folder
+  dest: "tmp/", // temp folder
 });
 export const safeUnlink = (p) => {
   if (!p) return;
