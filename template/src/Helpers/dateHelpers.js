@@ -1,3 +1,20 @@
+// ✅ Format a JS Date to 'DD/MM/YYYY, HH:MM:SS AM/PM' in IST timezone
+  export function currentDateTime() {
+    let date = new Date().toLocaleString()
+    const options = {
+      timeZone: 'Asia/Kolkata',
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    };
+    return date.toLocaleString('en-IN', options);
+  }
+
+
 // ✅ Format a JS Date or ISO string to 'DD/MM/YYYY'
 export function formatDateToDDMMYYYY(input) {
   /*** @param {Date | string} input - JS Date object or ISO string (e.g., '2025-07-22')

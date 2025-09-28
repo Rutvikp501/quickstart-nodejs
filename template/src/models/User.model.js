@@ -14,11 +14,15 @@ const userSchema = new mongoose.Schema({
   otp: String,
   otpExpires: Date,
   googleId: { type: String, unique: true, sparse: true },
+  githubId: { type: String, unique: true, sparse: true },
+  facebookId: { type: String, unique: true, sparse: true },
+  appleId: { type: String, unique: true, sparse: true },
   role: { type: String,default: 'user'},
   isActive: { type: Boolean, default: true },
   isAdmin: { type: Boolean, },
   createdAt: { type: Date, default: Date.now },
-   profilePhoto: [PhotoSchema],
+  profilePhoto: [PhotoSchema],
+  location: String,
 });
 
 const User = mongoose.model('User', userSchema);

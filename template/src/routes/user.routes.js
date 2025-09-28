@@ -1,4 +1,5 @@
 import express from 'express';
+const router = express.Router();
 import {registerUser,loginUser,getAllUsers,getUserById,updateUser,deleteUser,
          forgotPassword,verifyOtp,resetPassword,
          exportUsersToExcel,
@@ -7,7 +8,7 @@ import {registerUser,loginUser,getAllUsers,getUserById,updateUser,deleteUser,
 import { authenticateJWT, checkRole } from '../auth/jwt.auth.js';
 import { uploadLocal } from '../config/s3.js';
 
-const router = express.Router();
+
 
 // ✅ Public routes
 router.post('/register', uploadLocal.single("profilePhoto"),registerUser);

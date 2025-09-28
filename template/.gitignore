@@ -1,3 +1,7 @@
 node_modules
+# src/models/googleMap
+src/controllers/googleMap
+# src/routes/googleMap.routes
+.DS_Store
 .env
 .codegpt

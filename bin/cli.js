@@ -2,7 +2,6 @@
 const fs = require("fs");
 const path = require("path");
 const args = process.argv.slice(2);
-console.log("Args:", args);
 const projectName = args[0];
 
 if (!projectName) {
